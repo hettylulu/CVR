@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>述语检索——{{ pr }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyle.css') }}">
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 给整个表格添加阴影 */
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: none; /* 去掉框线 */
+        }
+
+        /* 奇数行阴影 */
+        tr:nth-child(odd) {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 偶数行阴影 */
+        tr:nth-child(even) {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        a{
+            text-decoration: none;
+        }
+        .header_part {
+            display: flex; /* 使用Flexbox布局 */
+            justify-content: space-between; /* 子元素左右分布 */
+            margin: 20px;
+        }
+
+        .left-div {
+            text-align: left; /* 左对齐 */
+            width: 45%; /* 占据容器的45%宽度 */
+            padding-right: 10px; /* 右边距 */
+        }
+
+        .right-div {
+            text-align: right; /* 右对齐 */
+            width: 45%; /* 占据容器的45%宽度 */
+            padding-left: 10px; /* 左边距 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header_part ">
+            <div class="left-div">
+                <h3>{{ pr }}</h3>
+            </div>
+            <div class="right-div">
+                <p><a href="javascript:history.back();">返回</a> | <a href="/">首页</a></p>
+            </div>
+        </div>
+        <div class="main">
+            {% if predicate_info %}
+            {% for item in predicate_info %}
+            <table>
+                {% if item[0][12] %}
+                <tr>
+                    <td><strong>述语词例:</strong></td>
+                    <td>{{ item[0][12] }}</td>
+                </tr>
+                {% endif %}
+                {% if item[0][13] %}
+                <tr>
+                    <td><strong>述语拼音:</strong></td>
+                    <td>{{ item[0][13] }}</td>
+                </tr>
+                {% endif %}
+                {% if item[0][14] %}
+                <tr>
+                    <td><strong>述语HSK等级:</strong></td>
+                    <td>{{ item[0][14] }}</td>
+                </tr>
+                {% endif %}
+                 {% if item[0][15] %}
+                <tr>
+                    <td><strong>述语词性:</strong></td>
+                    <td>{{ item[0][15] }}</td>
+                </tr>
+                {% endif %}
+                {% if item[0][16] %}
+                <tr>
+                    <td><strong>述语义项:</strong></td>
+                    <td>{{ item[0][16] }}</td>
+                </tr>
+                {% endif %}
+                 {% if item[0][17] %}
+                <tr>
+                    <td><strong>述语配价数:</strong></td>
+                    <td>{{ item[0][17] }}</td>
+                </tr>
+                {% endif %}
+                {% if item[0][18] %}
+                <tr>
+                    <td><strong>述语论元及论元语义角色:</strong></td>
+                    <td>
+                        <p>{{ item[0][18] }}：{{ item[0][21] }}</p>
+                        {% if item[0][19] %}
+                        <p>{{ item[0][19] }}：{{ item[0][22] }}</p>
+                        {% endif %}
+                        {% if item[0][20] %}
+                        <p>{{ item[0][20] }}：{{ item[0][23] }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if item[0][60] %}
+                <tr>
+                    <td><strong>述语句式分布:</strong></td>
+                    <td>主宾句-受事主语句-施事主语句：{{ item[0][60] }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td><strong>例句:</strong></td>
+                    <td>
+                        {% if item[0][55] %}
+                        <p>主宾句：{{ item[0][55] }}</p>
+                        {% endif %}
+                        {% if item[0][57] %}
+                        <p>受事主语句：{{ item[0][57] }}</p>
+                        {% endif %}
+                        {% if item[0][59] %}
+                        <p>施事主语句：{{ item[0][59] }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>述结式:</strong></td>
+                    <td>
+                        {% for i in item %}
+                        <p><a href="../vrc/{{i[2]}}">{{i[2]}}</a></p>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
+            {% endfor %}
+            {% else %}
+            <div style="margin: auto;"><p>未查询到相应结果</p></div>
+            {% endif %}
+        </div>
+        <div class="footer">
+            <p>中国传媒大学人文学院</p>
+        </div>
+    </div> 
+</body>
+</html>

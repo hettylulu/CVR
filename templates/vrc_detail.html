@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>述结式检索——{{ vr }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyle.css') }}">
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 给整个表格添加阴影 */
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: none; /* 去掉框线 */
+        }
+
+        /* 奇数行阴影 */
+        tr:nth-child(odd) {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 偶数行阴影 */
+        tr:nth-child(even) {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+        }
+        a{
+            text-decoration: none;
+        }
+        .header_part {
+            display: flex; /* 使用Flexbox布局 */
+            justify-content: space-between; /* 子元素左右分布 */
+            margin: 20px;
+        }
+
+        .left-div {
+            text-align: left; /* 左对齐 */
+            width: 45%; /* 占据容器的45%宽度 */
+            padding-right: 10px; /* 右边距 */
+        }
+
+        .right-div {
+            text-align: right; /* 右对齐 */
+            width: 45%; /* 占据容器的45%宽度 */
+            padding-left: 10px; /* 左边距 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header_part ">
+            <div class="left-div">
+                <h3>{{ vr }}</h3>
+            </div>
+            <div class="right-div">
+                <p><a href="javascript:history.back();">返回</a> | <a href="/">首页</a></p>
+            </div>
+        </div>
+        <div class="main">
+            {% if vrc_info %}
+            {% for item in vrc_info %}
+            <table>
+                {% if item[2] %}
+                <tr>
+                    <td><strong>述结式词例:</strong></td>
+                    <td>{{ item[2] }}</td>
+                </tr>
+                {% endif %}
+                {% if item[3] %}
+                <tr>
+                    <td><strong>述结式拼音:</strong></td>
+                    <td>{{ item[3] }}</td>
+                </tr>
+                {% endif %}
+                {% if item[4] %}
+                <tr>
+                    <td><strong>述结式类型:</strong></td>
+                    <td>{{ item[4] }}</td>
+                </tr>
+                {% endif %}
+                {% if item[5] %}
+                <tr>
+                    <td><strong>述结式配价数:</strong></td>
+                    <td>{{ item[5] }}</td>
+                </tr>
+                {% endif %}
+                {% if item[6] %}
+                <tr>
+                    <td><strong>述结式论元及论元语义角色:</strong></td>
+                    <td>
+                        <p>{{ item[6] }}：{{ item[9] }}</p>
+                        {% if item[7] %}
+                        <p>{{ item[7] }}：{{ item[10] }}</p>
+                        {% endif %}
+                        {% if item[8] %}
+                        <p>{{ item[8] }}：{{ item[11] }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if item[74] %}
+                <tr>
+                    <td><strong>基础句:</strong></td>
+                    <td>{{ item[74] }}</td>
+                </tr>
+                {% endif %}
+                {% if item[75] %}
+                <tr>
+                    <td><strong>句法树:</strong></td>
+                    <td><img src="{{ url_for('static', filename='img/trees/' + item[75]) }}" width="200px"></td>
+                </tr>
+                {% endif %}
+                {% if item[12] %}
+                <tr>
+                    <td><strong>述语词例:</strong></td>
+                    <td><a href="/predicate/{{ item[12] }}">{{ item[12] }}</a></td>
+                </tr>
+                {% endif %}
+                {% if item[24] %}
+                <tr>
+                    <td><strong>补语词例:</strong></td>
+                    <td><a href="/complecate/{{ item[24] }}">{{ item[24] }}</a></td>
+                </tr>
+                {% endif %}
+                {% if item[36] %}
+                <tr>
+                    <td><strong>共指关系:</strong></td>
+                    <td>
+                        <p>R.ARG1={{ item[36] }}</p>
+                        {% if item[37] %}
+                        <p>R.ARG2={{ item[37] }}</p>
+                        {% endif %}
+                        {% if item[38] %}
+                        <p>V.ARG1={{ item[38] }}</p>
+                        {% endif %}
+                        {% if item[39] %}
+                        <p>V.ARG2={{ item[39] }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if item[40] %}
+                <tr>
+                    <td><strong>补语语义类型:</strong></td>
+                    <td>{{ item[40] }}</td>
+                </tr>
+                {% endif %}
+                {% if item[53] %}
+                <tr>
+                    <td><strong>述结式句式分布:</strong></td>
+                    <td>主动宾-受事主语句-把字句-被na让字句-施事主语句-动词拷贝句：{{ item[53] }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td><strong>例句:</strong></td>
+                    <td>
+                        {% if item[42] %}
+                        <p>主动宾：{{ item[42] }}</p>
+                        {% endif %}
+                        {% if item[44] %}
+                        <p>受事主语句：{{ item[44] }}</p>
+                        {% endif %}
+                        {% if item[46] %}
+                        <p>把字句：{{ item[46] }}</p>
+                        {% endif %}
+                        {% if item[48] %}
+                        <p>被na让字句：{{ item[48] }}</p>
+                        {% endif %}
+                        {% if item[50] %}
+                        <p>施事主语句：{{ item[50] }}</p>
+                        {% endif %}
+                        {% if item[52] %}
+                        <p>动词拷贝句：{{ item[52] }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if item[68] %}
+                <tr>
+                    <td><strong>备注:</strong></td>
+                    <td>{{ item[68] }}</td>
+                </tr>
+                {% endif %}
+                {% if item[69] %}
+                <tr>
+                    <td><strong>来源:</strong></td>
+                    <td>{{ item[69] }}</td>
+                </tr>
+                {% endif %}
+            </table>
+            {% endfor %}
+            {% else %}
+            <div style="margin: auto;"><p>未查询到相应结果</p></div>
+            {% endif %}
+        </div>
+        <div class="footer">
+            <p>中国传媒大学人文学院</p>
+        </div>
+    </div> 
+</body>
+</html>

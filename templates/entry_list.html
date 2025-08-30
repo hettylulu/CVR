@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>述结式词典——{{ letter }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyle.css') }}">
+    <style>
+        table {
+            width: 80%; /* 表格宽度占父级容器的80% */
+            margin: 20px auto; /* 表格居中对齐 */
+            border-collapse: separate; /* 防止框线重合 */
+            border-spacing: 0;
+        }
+
+        thead {
+            background-color: #4CAF50; /* 表头背景颜色 */
+            color: white; /* 表头字体颜色 */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;                                                       
+            border: 1px solid #4CAF50;; /* 表格框线颜色 */
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2; /* 偶数行背景颜色 */
+        }
+
+        tbody tr:hover {
+            background-color: #ddd; /* 鼠标悬停时的背景颜色 */
+        }
+
+        a{
+            text-decoration: none;
+        }
+        .header_part {
+            display: flex; /* 使用Flexbox布局 */
+            justify-content: space-between; /* 子元素左右分布 */
+            margin: 20px;
+        }
+
+        .left-div {
+            text-align: left; /* 左对齐 */
+            width: 45%; /* 占据容器的45%宽度 */
+            padding-right: 10px; /* 右边距 */
+        }
+
+        .right-div {
+            text-align: right; /* 右对齐 */
+            width: 45%; /* 占据容器的45%宽度 */
+            padding-left: 10px; /* 左边距 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header_part ">
+            <div class="left-div">
+                <h3>{{ letter }}</h3>
+            </div>
+            <div class="right-div">
+                <p><a href="javascript:history.back();">返回</a></p>
+            </div>
+        </div>
+        <div class="main">
+            {% if data %}
+            <table>
+                <thead>
+                <tr>
+                    <th>述语词例</th>
+                    <th>述结式词例</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td><a href="/predicate/{{ item[0][12] }}">{{ item[0][12] }}</a></td>
+                    <td>
+                        {% for i in item %}
+                        <p><a href="/vrc/{{i[2]}}">{{i[2]}}</a></p>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+            {% else %}
+            <div style="margin: auto;"><p>无{{ letter }}开头的述结式词例</p></div>
+            {% endif %}
+        </div>
+        <div class="footer">
+            <p>中国传媒大学人文学院</p>
+        </div>
+    </div> 
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>述结式检索系统</title>
+    <link rel="stylesheet" href="static/css/mystyle.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>述结式检索系统</h1>
+        </div>
+        <div class="main">
+            <div class="left">
+                <div class="query">音序查询</div>
+                <div class="buttons">
+                    <a href="/dictionary/A" class="button">A</a>
+                    <a href="/dictionary/B" class="button">B</a>
+                    <a href="/dictionary/C" class="button">C</a>
+                    <a href="/dictionary/D" class="button">D</a>
+                    <a href="/dictionary/E" class="button">E</a>
+                    <a href="/dictionary/F" class="button">F</a>
+                    <a href="/dictionary/G" class="button">G</a>
+                    <a href="/dictionary/H" class="button">H</a>
+                    <a href="/dictionary/I" class="button">I</a>
+                    <a href="/dictionary/J" class="button">J</a>
+                    <a href="/dictionary/K" class="button">K</a>
+                    <a href="/dictionary/L" class="button">L</a>
+                    <a href="/dictionary/M" class="button">M</a>
+                    <a href="/dictionary/N" class="button">N</a>
+                    <a href="/dictionary/O" class="button">O</a>
+                    <a href="/dictionary/P" class="button">P</a>
+                    <a href="/dictionary/Q" class="button">Q</a>
+                    <a href="/dictionary/R" class="button">R</a>
+                    <a href="/dictionary/S" class="button">S</a>
+                    <a href="/dictionary/T" class="button">T</a>
+                    <a href="/dictionary/U" class="button">U</a>
+                    <a href="/dictionary/V" class="button">V</a>
+                    <a href="/dictionary/W" class="button">W</a>
+                    <a href="/dictionary/X" class="button">X</a>
+                    <a href="/dictionary/Y" class="button">Y</a>
+                    <a href="/dictionary/Z" class="button">Z</a>
+                </div>
+            </div>
+            <div class="right">
+                <form id="searchForm" method="GET" action="/search">
+                    <div class="search-options">
+                        <button type="button" class="option active" value="按述语搜索">按述语搜索</button>
+                        <button type="button" class="option" value="按补语搜索">按补语搜索</button>
+                        <button type="button" class="option" value="按述结式搜索">按述结式搜索</button>
+                    </div>
+                    <div class="search-input">
+                        <input type="text" id="searchInput" name="search_term" placeholder="请输入搜索内容">
+                        <button type="submit" class="search-button">搜索</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+            <p>中国传媒大学人文学院</p>
+        </div>
+    </div> 
+    <script src="static/js/myscript.js"></script>
+</body>
+</html>
